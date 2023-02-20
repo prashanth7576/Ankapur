@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::view('admin','livewire.admin');
-Route::view('user','livewire.user');
+// Route::view('user','livewire.user');
  Route::view('roles', 'livewire.home');
 Route::view('employes', 'livewire.admin');
 Route::view('profile', 'livewire.profile');
@@ -28,3 +28,5 @@ Route::view('deliveryboys', 'livewire.deliveryboys');
 Route::view('manager', 'livewire.manager');
 Route::view('storemanager', 'livewire.storemanager');
 Route::view('staff', 'livewire.staff');
+Route::view('menu', 'livewire.user');
+Route::view('logout', 'livewire.logout');

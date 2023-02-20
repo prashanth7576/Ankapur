@@ -1,6 +1,8 @@
 <div>
 
-    @livewire('layouts.user')
+    {{-- @livewire('layouts.admin') --}}
     
- <h1> User </h1>
+ 
+    @livewire('menu')
+
 </div>

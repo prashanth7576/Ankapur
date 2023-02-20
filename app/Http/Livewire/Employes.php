@@ -5,11 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Employes as Employe;
 use App\Models\roles as Roles;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class Employes extends Component
 {
 
-    public $employe, $employeeid, $firstname, $lastname, $mobile, $email,$role, $address, $employe_id, $roles;
+    public $employe, $employeeid, $firstname, $lastname, $mobile, $email,$role, $address, $password, $employe_id, $roles, $user, $user_id;
     public $updateEmploye = false;
 
     protected $listeners = [
@@ -25,6 +27,7 @@ class Employes extends Component
         'email' => 'required|email',
         'role' => 'required',
         'address' => 'required|min:2',
+        'password' => 'required|min:8',
 
     ];
     public function render()
@@ -43,6 +46,7 @@ class Employes extends Component
         $this->email = '';
         $this->role = '';
         $this->address = '';
+        $this->password = '';
     }
 
     public function store(){
@@ -60,6 +64,17 @@ class Employes extends Component
                 'email'=>$this->email,
                 'role' => $this->role,
                 'address'=>$this->address
+            ]);
+
+
+
+
+            // $this->password = Hash::make($this->password);
+
+            User::create([
+
+                'name' => $this->firstname, 'email' => $this->email, 'password' => Hash::make($this->password)
+
             ]);
      
             // Set Flash Message
@@ -88,6 +103,9 @@ class Employes extends Component
         $this->address = $employe->address;
         $this->employe_id = $employe->id;
         $this->updateEmploye = true;
+
+        // $user = User::findorFail($id);
+        // $this->password = $user->password;
     }
  
     public function cancel()
@@ -113,6 +131,12 @@ class Employes extends Component
                 'role' => $this->role,
                 'address'=>$this->address
             ])->save();
+
+            // User::find($this->user_id)->fill([
+                
+            //     'password'=>$this->password
+            // ])->save();
+ 
  
             session()->flash('success','Employe Details Updated Successfully!!');
      

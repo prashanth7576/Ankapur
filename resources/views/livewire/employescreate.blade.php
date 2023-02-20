@@ -65,6 +65,13 @@ aria-labelledby="offcanvasNavbarLabel">
         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Address" wire:model="address">
         @error('address') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
+
+    <div class="form-group mb-3">
+        <label>Password :</label>
+        <input type="password" wire:model="password" class="form-control" placeholder="Enter Password">
+        @error('password') <span class="text-danger error">{{ $message }}</span>@enderror
+    </div>
+</div>
     
     <div class="d-grid gap-2">
         <button wire:click.prevent="store()" class="btn btn-success btn-block">Save</button>

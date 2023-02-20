@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
+use Livewire\Request;
 
 class LoginRegister extends Component
 {
@@ -89,4 +89,6 @@ class LoginRegister extends Component
 
         return redirect('/');
     }
+
+    
 }

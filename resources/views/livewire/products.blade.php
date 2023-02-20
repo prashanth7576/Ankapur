@@ -70,9 +70,7 @@
                                             {{$rs->description}}
                                         </td>
                                         
-                                        <td>
-                                            {{$rs->address}}
-                                        </td>
+                                       
                                         <td>
                                             <button wire:click="edit({{$rs->id}})" class="btn btn-primary btn-sm">Edit</button>
                                             <button onclick="deleteProduct({{$rs->id}})" class="btn btn-danger btn-sm">Delete</button>

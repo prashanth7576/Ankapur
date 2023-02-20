@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-   
-  
-</head>
-<body>
-
-
-    
 <div>
 
-    
+
 
     <div class="row">
         <div class="col-md-3"></div>
@@ -37,22 +22,22 @@
                 </div>
             </div>
 
-                    @if ($updateRole)
-                        @include('livewire.rolesupdate')
-                    @else
-                        @include('livewire.rolescreate')
-                    @endif
-                
+            @if ($updateRole)
+                @include('livewire.rolesupdate')
+            @else
+                @include('livewire.rolescreate')
+            @endif
+
         </div>
     </div>
 
     <div class="navbar navbar-light" style="margin-top:-4%;margin-left:85%;">
         <div class="container-fluid">
-            <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
                 Add Roles
             </button>
-          
+
         </div>
     </div>
 
@@ -70,6 +55,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @if (count($roles) > 0)
                                     @foreach ($roles as $rs)
                                         <tr>
@@ -90,11 +76,12 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="3" >
+                                        <td colspan="3">
                                             No post Found.
                                         </td>
                                     </tr>
                                 @endif
+
                             </tbody>
                         </table>
                     </div>
@@ -104,9 +91,9 @@
     </div>
 
 
-    
 
-   
+
+
 
     <script>
         function deleteRole(id) {
@@ -115,7 +102,3 @@
         }
     </script>
 </div>
-    
-</body>
-</html>
-

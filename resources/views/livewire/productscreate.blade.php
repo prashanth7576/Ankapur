@@ -24,11 +24,11 @@ aria-labelledby="offcanvasNavbarLabel">
         @error('productprice') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
 
-    {{-- <div class="form-group mb-3">
+    <div class="form-group mb-3">
         <label for="image"> Image:</label>
         <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" placeholder="Enter Last Name" wire:model="image">
         @error('image') <span class="text-danger">{{ $message }}</span>@enderror
-    </div> --}}
+    </div> 
 
     <div class="form-group mb-3">
         <label for="category"> Category:</label>
