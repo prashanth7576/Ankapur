@@ -8,17 +8,17 @@ use App\Models\Products as Product;
 class Products extends Component
 {
 
-    public $product, $productname, $productprice,  $category, $description, $product_id, $products;
+    public $product, $productname, $productprice, $image,  $category, $description, $product_id, $products;
     public $updateProduct = false;
 
     protected $listeners = [
-        'deleteproduct' => 'destroy'
+        'deleteProduct' => 'destroy'
     ];
 
     protected $rules = [
         'productname' => 'required',
         'productprice' => 'required',
-        // 'image' => 'required',
+        'image' => 'required',
         'category' => 'required',
         'description' => 'required',
     ];
@@ -32,7 +32,7 @@ class Products extends Component
     public function resetFields(){
         $this->productname = '';
         $this->productprice = '';
-        // $this->image = '';
+        $this->image = '';
         $this->category = '';
         $this->description = '';
     }
@@ -48,7 +48,7 @@ class Products extends Component
             Product::create([
                 'productname'=>$this->productname,
                 'productprice'=>$this->productprice,
-                // 'image'=>$this->image,
+                'image'=>$this->image,
                 'category'=>$this->category,
                 'description'=>$this->description,
                 
@@ -73,7 +73,7 @@ class Products extends Component
         $product = Product::findOrFail($id);
         $this->productname =  $product->productname;
         $this->productprice = $product->productprice;
-        // $this->image = $product->image;
+        $this->image = $product->image;
         $this->category = $product->category;
         $this->description = $product->description;
         
@@ -101,7 +101,7 @@ class Products extends Component
             Product::find($this->product_id)->fill([
                 'productname'=>$this->productname,
                 'productprice'=>$this->productprice,
-                // 'image'=>$this->image,
+                'image'=>$this->image,
                 'category'=>$this->category,
                 'description'=>$this->description,
                

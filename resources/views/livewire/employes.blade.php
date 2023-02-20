@@ -25,8 +25,8 @@
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="navbar navbar-light" style="margin-top:-4%;margin-left:50%;">
+    <div >
+        <div class="navbar navbar-light" style="margin-top: 2%;margin-left:80%;">
             <div class="container-fluid">
                 <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
