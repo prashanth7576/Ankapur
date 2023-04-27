@@ -225,7 +225,7 @@
 
         {{-- <h1>{{$customer->mobile}}</h1> --}}
 
-<h1>weuifkhaweiudhweiudh</h1>
+
 
     </body>
 
