@@ -59,6 +59,12 @@ opacity:0.9;
                         {{ __('Order') }}
                     </x-nav-link>
                 </div> 
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="url('kitchen')" :active="request()->routeIs('customer')">
+                        {{ __('Kitchen') }}
+                    </x-nav-link>
+                </div> 
                 
             </div>
 

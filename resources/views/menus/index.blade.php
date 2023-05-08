@@ -223,8 +223,7 @@
 
 
 
-        {{-- <h1>{{$customer->mobile}}</h1> --}}
-
+       
 
 
     </body>

@@ -27,7 +27,7 @@ use App\Http\Controllers\ReportsController;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,7 +66,7 @@ Route::put('customers/{id}', [CustomerController::class, 'update']);
 Route::get('products-edit/{id}', [ProductController::class, 'edit']);
 Route::put('products/{id}', [ProductController::class, 'update']);
 
-
+Route::get('/kitchen', [App\Http\Controllers\KitchenController::class,'index']);
 
 // Route::get('order', [App\Http\Controllers\ReportsController::class,'index']);
 // Route::post('cart', [App\Http\Controllers\ReportsController::class,'store']);

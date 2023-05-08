@@ -126,9 +126,13 @@ return view('cart');
 
       $value = Customer::find($id);
 
+      $prod = Menu::find($id);
+
     
 
      $user = DB::table('carts')->where('customerid', $value->customerid)->get();
+
+   //  $orders = DB::table('products')->where('productid', $prod->productid)->get();
 
      $reports = DB::table('orders')->where('customerid', $value->customerid)->get();
 
@@ -152,13 +156,12 @@ return view('cart');
   // ray()->models($sum);
  //return  $users = DB::table('orders')->distinct()->groupBy('customername')->orderBy('id', 'desc')->get();
 
- $sum = Order::where('status', 'preparing')
-                        ->filter()
-                        ->with('orderid')
-                        ->orderByDesc('id')
-                        ->get();
 
-      return view('order', compact('data', 'items', 'id', 'product', 'value', 'user', 'report', 'totalquantity','carts', 'list', 'total', 'reports', 'datareports', 'sum'));
+ // return $deposit = DB::select('SELECT * FROM orders WHERE orderid IN   (SELECT orderid FROM orders where (status = "preparing") GROUP BY orderid )');
+
+//  $ord = DB::table('orders')->selectRaw('orderid, productid, totalprice')->groupBy('orderid')->get();
+
+      return view('order', compact('data', 'items', 'id', 'product', 'value', 'user', 'report', 'totalquantity','carts', 'list', 'total', 'reports', 'datareports'));
       
     }
 

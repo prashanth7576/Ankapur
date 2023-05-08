@@ -39,7 +39,7 @@
 
 
                     @foreach ($user as $i)
-                        @if ($i->created_at == Carbon\Carbon::now())
+                        
                             <div style="margin-left:20px;border:1px solid lightgray; border-radius:10px; padding:10px">
                                 {{-- @foreach ($orders as $j)
 
@@ -57,24 +57,36 @@
                                 <table class="table" style="border:white">
                                     <thead>
                                         <tr>
-                                            <th>Image</th>
+                                            {{-- <th>Image</th> --}}
                                             <th>Product Name </th>
+                                            <th> Quantity </th>
                                             <th> Product Price </th>
+                                            <th> Total price </th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <tr>
-                                            <td></td>
+                                            {{-- <td>        @foreach ($orders as $j)
+
+                                                <img src="{{ asset('public/products/' . $j->productimage) }}" width="100px" style="border-radius: 5px; height:100px">
+                                                
+                                                    
+                                                @endforeach </td> --}}
+                                                {{-- <td> @foreach ($ord as $k)
+                                                    <p>{{$k->productid}}</p>
+                                                @endforeach</td> --}}
                                             <td>{{ $i->productname }}</td>
+                                            <td>{{$i->quantity}}</td>
                                             <td>{{ $i->productprice }}</td>
+                                            <td>{{$i->price}}</td>
 
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <br>
-                        @endif
+                        
                     @endforeach
 
 
