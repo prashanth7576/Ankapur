@@ -173,7 +173,7 @@
                                         <input type="hidden" name="productid" value="{{ $i->productid }}">
                                         <input type="hidden" value="{{ $i->productname }}" name="productname">
                                         <input type="hidden" value="{{ $i->productprice }}" name="productprice">
-                                        <input type="number" value="1" name="quantity"
+                                        <input type="number" value="1" name="quantity" min="1" max="100"
                                             style="width: 100px; height:30px; margin-bottom:10px; margin-left:20px; border-radius:10px">
                                         {{-- <input type="hidden" value="{{$i->productimage}}" name="productimage"> --}}
                                         <input type="hidden" value="{{ $i->category }}" name="category">

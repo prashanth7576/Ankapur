@@ -67,7 +67,7 @@
                      <th> Order Time </th>
                      <th> Order Date </th>
                      <th> Status </th>
-                     <th> Action </th>
+                     {{-- <th> Action </th> --}}
 
                 </tr>
             </thead>
@@ -86,8 +86,8 @@
                 <td>{{$i->ordertime}}</td>
                 <td>{{$i->orderdate}}</td>
                 <td>{{$i->status}}</td>
-                <td> <button class="btn btn-primary"> <a href="{{ url('status', $i->id) }}"> <span style="color: white">Change Status</span>
-                </a> </button> </td>
+                {{-- <td> <button class="btn btn-primary"> <a href="{{ url('status', $i->id) }}"> <span style="color: white">Change Status</span>
+                </a> </button> </td> --}}
             </tr>
                 
             @endforeach

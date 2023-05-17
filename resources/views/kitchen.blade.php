@@ -5,22 +5,9 @@
             {{ __('Kitchen') }}
         </h2>
     </x-slot>
-    <br><br>
+    <br>
 
-    {{-- @foreach ($data as $i)
-
-{{$i->totalprice}}
     
-@endforeach --}}
-
-    {{-- <div class="card">
-        <div class="card-header">
-            <p>Name:</p>
-            <p>Mobile:</p>
-            <p>Address: </p>
-        </div>
-        <div class="card-body"> --}}
-
 
     <!DOCTYPE html>
     <html lang="en">
@@ -46,12 +33,15 @@
                 border-radius: 15px;
                 background-color: rgb(0, 155, 119, 0.2);
                 margin-left: 20px;
-                padding: 10px
+                
             }
 
             p {
 
                 text-transform: capitalize;
+            }
+            td{
+                height: 60px;
             }
 
 
@@ -90,17 +80,18 @@
                     @if ($i->status == 'preparing')
                         <div class="card">
 
-                            <div>
+                        
                                 <p>Customer ID: <b>{{ $i->customerid }}</b></p>
                                 <p>Name: <b> {{ $i->customername }} </b></p>
                                 <p>Mobile: <b> {{ $i->mobile }} </b></p>
                                 <p>Order ID: <b> {{ $i->orderid }} </b></p>
                                 <p>Status: <b> {{$i->status}} </b></p>
+
                                 {{--                         
                                 <p>Order Date: {{$i->orderdate}}</p>
                                 <p>Order Time: {{$i->ordertime}}</p> --}}
 
-                            </div>
+                            
                             <hr>
                             <div class="card-body">
 
@@ -124,6 +115,7 @@
 
                                             <td>{{ $i->productname }}</td>
                                             <td>{{ $i->quantity }}</td>
+
                                             <td>{{ $i->productprice }}</td>
                                             <td>{{ $i->totalprice }}</td>
 
@@ -131,7 +123,7 @@
                                     </tbody>
                                 </table>
 
-                                <button class="btn btn-primary"> <a href="{{ url('status', $i->id) }}"> <span style="color: white"> Completed </span>
+                                <button class="btn btn-primary" > <a href="{{ url('status', $i->id) }}" style="text-decoration: none"> <span style="color: white"> Completed </span> </a> </button>
                             </div>
 
                         </div>
@@ -145,13 +137,6 @@
 
             </div>
         </div>
-
-
-
-
-
-
-
 
 
 

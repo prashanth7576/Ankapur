@@ -58,7 +58,8 @@ Route::get('/status/{id}', [App\Http\Controllers\OrderController::class, 'status
 
 Route::get('/order/{id}', [App\Http\Controllers\OrderController::class,'orders']);
 
-
+Route::delete('/order/{id}', [App\Http\Controllers\OrderController::class,'destroy']);
+Route::post('/quantity/update', [App\Http\Controllers\OrderController::class, 'updateQuantity'])->name('update.quantity');
 
 Route::get('customers-edit/{id}', [CustomerController::class, 'edit']);
 Route::put('customers/{id}', [CustomerController::class, 'update']);

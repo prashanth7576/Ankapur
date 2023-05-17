@@ -25,6 +25,12 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+            <style>
+                #order{
+                    margin-top: 10px;
+                width: 150px
+                }
+            </style>
     </head>
 
     <body>
@@ -33,65 +39,62 @@
             <div class="row">
                 <div class="card col-md-6  "
                     style="box-shadow: 0px 10px 50px rgba(180, 174, 174, 0.7);margin-bottom:20px; height:auto">
+                   
+
+                    <p style="font-size: 20px; color:rgb(100, 96, 96); margin-top:10px;text-decoration:underline; margin-left:30px">
+                        Cart Details </p>
+
+                    <div style="margin-left:20px;border:1px solid lightgray; border-radius:10px; padding:10px">
+
+
+                        <table class="table" style="border:white">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name </th>
+                                    <th> Quantity </th>
+                                    <th> Product Price </th>
+                                    <th> Total price </th>
+                                    <th> Action </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($user as $i)
+                                    <tr>
+                                        <td>
+                                            @foreach ($order as $j)
+                                                <img src="{{ asset('public/products/' . $j->productimage) }}"
+                                                    width="100px" style="border-radius: 5px; height:100px">
+                                            @endforeach
+                                        </td>
+                                      
+
+
+
+                                        <td>{{ $i->productname }}</td>
+                                        {{-- <td>{{ $i->quantity }}</td> --}}
+                                        <td> <input data-id="{{ $i->id }}" class="quantities" type="number" value="{{ $i->quantity }}" style="border: none;width:70px"></td>
+                                        <td>{{ $i->productprice }}</td>
+                                        <td>{{ $i->price }}</td>
+                                        <td>
+
+                                        <form action="{{ url('order', $i->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="btn btn-danger">
+                                                <input type="submit" class="button" value="Remove">
+                                            </div>
+                                        </form>
+                                        </td>
+
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <br>
-                    <br>
-
-
-
-                    @foreach ($user as $i)
-                        
-                            <div style="margin-left:20px;border:1px solid lightgray; border-radius:10px; padding:10px">
-                                {{-- @foreach ($orders as $j)
-
-<img src="{{ asset('public/products/' . $j->productimage) }}" width="100px" style="border-radius: 5px; height:100px">
-
-    
-@endforeach --}}
-                                {{-- <div class="flex">
-                                
-                                <p style="margin-left: 30px">{{ $i->productname }}</p>
-                                <p style="margin-left: 30px">{{ $i->productprice }}</p>
-                                <p style="margin-left: 30px">{{ $i->quantity }}</p>
-                            </div> --}}
-
-                                <table class="table" style="border:white">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th>Image</th> --}}
-                                            <th>Product Name </th>
-                                            <th> Quantity </th>
-                                            <th> Product Price </th>
-                                            <th> Total price </th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            {{-- <td>        @foreach ($orders as $j)
-
-                                                <img src="{{ asset('public/products/' . $j->productimage) }}" width="100px" style="border-radius: 5px; height:100px">
-                                                
-                                                    
-                                                @endforeach </td> --}}
-                                                {{-- <td> @foreach ($ord as $k)
-                                                    <p>{{$k->productid}}</p>
-                                                @endforeach</td> --}}
-                                            <td>{{ $i->productname }}</td>
-                                            <td>{{$i->quantity}}</td>
-                                            <td>{{ $i->productprice }}</td>
-                                            <td>{{$i->price}}</td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <br>
-                        
-                    @endforeach
-
-
-
-
 
                 </div>
                 <br>
@@ -101,7 +104,7 @@
 
 
                 <div class="card col-md-4 mx-auto"
-                    style="box-shadow: 0px 10px 50px rgba(180, 174, 174, 0.7);padding-bottom:10px">
+                    style="box-shadow: 0px 10px 50px rgba(180, 174, 174, 0.7);padding-bottom:10px; height:320px">
 
 
                     <form action="{{ url('cart') }}" method="post" style="align-items: center; margin-left:20px">
@@ -110,16 +113,12 @@
                             Order Details </p>
 
 
-                        
+
                         @foreach ($user as $j)
-
-
-                            
-                        
                             <input type="hidden" name="productid[]" id="productid" value="{{ $j->productid }}"
                                 style="border:none; background:none;">
 
-                                <input type="hidden" name="customerid" id="customerid" value="{{ $j->customerid }}"
+                            <input type="hidden" name="customerid" id="customerid" value="{{ $j->customerid }}"
                                 style="border:none; background:none;">
 
                             <input type="hidden" name="productname[]" id="productname" value="{{ $j->productname }}"
@@ -129,18 +128,17 @@
                             <input type="hidden" name="itemquantity[]" id="quantity" value="{{ $j->quantity }}"
                                 style="border:none; background:none;">
 
-                                <input type="hidden" name="mobilenumber[]" value="{{ $data->mobile }}"
+                            <input type="hidden" name="mobilenumber[]" value="{{ $data->mobile }}"
                                 style="border:none; background:none;">
 
-                                <input type="hidden" name="name[]" value="{{ $data->firstname }}"
+                            <input type="hidden" name="name[]" value="{{ $data->firstname }}"
                                 style="border:none; background:none;">
 
-                                <input type="hidden" name="productprice[]" value="{{ $j->productprice }}"
+                            <input type="hidden" name="productprice[]" value="{{ $j->productprice }}"
                                 style="border:none; background:none;">
-                                <input type="hidden" name="totalprice[]" value="{{ $j->price }}"
+                            <input type="hidden" name="totalprice[]" value="{{ $j->price }}"
                                 style="border:none; background:none;">
-                        
-                                @endforeach 
+                        @endforeach
 
                         <label for=""> Mobile Number:</label>
 
@@ -168,113 +166,49 @@
                             style="border:none; background:none;">
                         <br>
 
-                        {{-- @foreach ($reports as $i)
-                            <input type="text" name="customerid" id="customerid" value="{{ $data->customerid }}"
-                                style="border:none; background:none;">
-
-                            <input type="text" name="orderdate" id="orderdate" value="{{ $i->orderdate }}"
-                                style="border:none; background:none;">
-
-                            <input type="text" name="orderstatus" id="orderstatus" value="{{ $i->status }}"
-                                style="border:none; background:none;">
-
-                            <input type="text" name="restcode" id="restcode" value="HN"
-                                style="border:none; background:none;">
-
-
-
-
-
-                            <input type="text" name="transactionstatus" id="transactionstatus" value="COD"
-                                style="border:none; background:none;">
-
-                            <input type="text" name="orderid" id="orderid" value="{{ $i->orderid }}"
-                                style="border:none; background:none;">
-
-                            <br>
-
-
-
-
-
-
-
-                            <input type="text" name="CGST" id="cgst" style="border:none; background:none;">
-
-                            <input type="text" name="SGST" id="sgst" style="border:none; background:none;">
-
-                            <input type="text" name="cashsale" id="cashsale" style="border:none; background:none;">
-                        @endforeach
-
-                        @foreach ($datareports as $k)
-                            <input type="text" name="customeraddress" id="customeraddress"
-                                value="{{ $k->address }}" style="border:none; background:none;">
-                        @endforeach  --}}
+                        
 
                         <div class="flex">
-                            <button class="btn btn-success" type="submit" > Place order </button>
+                            <button class="btn btn-success" id="order" type="submit"> Place order </button>
 
-                            <a href="" class="btn btn-warning" type="submit" style="margin-left: 15px">
+                            {{-- <a href="" class="btn btn-warning" type="submit" style="margin-left: 15px">
                                 Cancel
-                                Order </a>
+                                Order </a> --}}
 
-                                {{-- <button type="button"  id='tax'> get </button> --}}
+
 
                         </div>
-
-                        {{-- @endif --}}
-
 
                     </form>
                 </div>
             </div>
-        </div>
-
-
-
-        {{-- <div>
-            @foreach ($sum as $a)
-   
-                
-            <h1>{{$a->customerid}}</h1>
-            <p>
-                {{$a->mobile}}
-            </p>
-            <p>
-                {{$a->productname}}
-            </p>
-w
-      
-
-           
-                
-            @endforeach
-        </div> --}}
+        </div>   
 
     </body>
 
     </html>
 
-    
     <script>
+        $(function() {
+        $('.quantities').change(function() {
+            var quantity = $(this).val();
+            var cart_id = $(this).data('id');
+            $.ajax({
 
-        var btn = document.getElementById("tax");
-        
-        btn.addEventListener("click", charges);
-        
-        
-             function charges(){
-        var totalprice = document.getElementById('price').value;
-        var servicetax = 2.5;
-        var amount = Math.round(totalprice / 100 * servicetax);
-        var cgstamount = document.getElementById('cgst').value = amount;
-        var sgstamount = document.getElementById('sgst').value = amount;
-        
-        var totalamount = parseInt(totalprice) + parseInt(cgstamount) + parseInt(sgstamount);
-        var cash = document.getElementById('cashsale').value = totalamount;
-             }
-        </script>
-
+                type: "POST",
+                dataType: "json",
+                url: '/quantity/update',
+                data: {
+                    'quantity': quantity,
+                    'cart_id': cart_id
+                },
+                success: function(data) {
+                    console.log(data.success)
+                }
+            });
+        })
+    });
+    </script>
 
 
 </x-app-layout>

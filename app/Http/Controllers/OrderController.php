@@ -114,30 +114,27 @@ return view('cart');
 
 
     public function orders($id){
-      
-      //  $sum = Order::all();
-      
+            
       $data = Customer::find($id);
       $items = Product::find($id);
 
       $product = Product::all();
 
-      $carts = Menu::find($id);
+      
 
       $value = Customer::find($id);
 
-      $prod = Menu::find($id);
+      // $prod = Menu::find($id);
 
     
 
      $user = DB::table('carts')->where('customerid', $value->customerid)->get();
 
-   //  $orders = DB::table('products')->where('productid', $prod->productid)->get();
+   // return $orders = DB::table('products')->where('productid', $carts->productid)->first();
 
      $reports = DB::table('orders')->where('customerid', $value->customerid)->get();
 
-    // return $tax = Order::where('customerid', $value->customerid)->select(DB::raw('sum(totalprice*2.5) as total'))->get();
-
+   
       $datareports = DB::table('customers')->where('customerid', $value->customerid)->get();
      $list = DB::table('carts')->where('customerid', $value->customerid)->count();
 
@@ -149,19 +146,12 @@ return view('cart');
 
      $total = DB::table('orders')->where('mobile', $value->mobile)->where('orderdate', Carbon::now()->format('Y-m-d'))->where('ordertime', Carbon::now()->format('H:i:m'))->sum(DB::raw('totalprice'));
 
-   //  return $sum = DB::table('orders')->with('customername')->get();
+     $cart = Menu::find($id);
+         // $order = DB::table('products')->whereIn('productid', '=', $cart->productid)->get();
 
-// return $sum = DB::table('orders')->where('status', 'preparing')->select(DB::raw('customerid as customer'))->groupBy('customer')->get();
+          $order = DB::select('SELECT * FROM products WHERE productid IN (SELECT productid FROM carts)');
 
-  // ray()->models($sum);
- //return  $users = DB::table('orders')->distinct()->groupBy('customername')->orderBy('id', 'desc')->get();
-
-
- // return $deposit = DB::select('SELECT * FROM orders WHERE orderid IN   (SELECT orderid FROM orders where (status = "preparing") GROUP BY orderid )');
-
-//  $ord = DB::table('orders')->selectRaw('orderid, productid, totalprice')->groupBy('orderid')->get();
-
-      return view('order', compact('data', 'items', 'id', 'product', 'value', 'user', 'report', 'totalquantity','carts', 'list', 'total', 'reports', 'datareports'));
+      return view('order', compact('data', 'items', 'id', 'product', 'value', 'user', 'report', 'totalquantity', 'list', 'total', 'reports', 'datareports', 'cart', 'order'));
       
     }
 
@@ -178,6 +168,22 @@ return view('cart');
           $orders->status = 'completed';
           $orders->save();
           return redirect()->back()->with('success', 'Item completed successfully');
+        }
+
+        public function destroy($id){
+
+          $order = Menu::findOrFail($id);
+          $order->delete();
+
+          return back();
+        }
+
+        public function updateQuantity(Request $request)
+        {
+            $quant = Menu::find($request->cart_id); 
+            $quant->quantity = $request->quantity;
+            $quant->save();
+            return response()->json('message', 'Quantity changed!');
         }
   
 }

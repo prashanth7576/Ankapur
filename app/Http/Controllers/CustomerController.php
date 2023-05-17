@@ -40,6 +40,12 @@ class CustomerController extends Controller
             $customers = Customer::all();
 
         }
+
+        // $tax = 2.5;
+
+        // $price = 298;
+
+        // $cgst = ($price/100)*$tax;
         return view('customers.index', compact('customers', 'search'));
     }
 
